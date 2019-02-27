@@ -1,8 +1,11 @@
 PROTOCOL_DIR = protocol
 
-
 ifdef PS2_MOUSE_ENABLE
-    SRC += $(PROTOCOL_DIR)/ps2_mouse.c
+    ifeq ($(PLATFORM),CHIBIOS)
+      SRC += $(PROTOCOL_DIR)/ps2_mouse_chibios.c
+    else
+      SRC += $(PROTOCOL_DIR)/ps2_mouse.c
+    endif
     OPT_DEFS += -DPS2_MOUSE_ENABLE
     OPT_DEFS += -DMOUSE_ENABLE
 endif
@@ -14,14 +17,24 @@ ifdef PS2_USE_BUSYWAIT
 endif
 
 ifdef PS2_USE_INT
-    SRC += protocol/ps2_interrupt.c
-    SRC += protocol/ps2_io_avr.c
+    ifeq ($(PLATFORM),CHIBIOS)
+      SRC += protocol/ps2_interrupt_chibios.c
+      SRC += protocol/ps2_io_chibios.c
+    else
+      SRC += protocol/ps2_interrupt.c
+      SRC += protocol/ps2_io_avr.c
+    endif
     OPT_DEFS += -DPS2_USE_INT
 endif
 
 ifdef PS2_USE_USART
-    SRC += protocol/ps2_usart.c
-    SRC += protocol/ps2_io_avr.c
+    ifeq ($(PLATFORM),CHIBIOS)
+      SRC += $(PROTOCOL_DIR)/ps2_usart_chibios.c
+      SRC += $(PROTOCOL_DIR)/ps2_io_chibios.c
+    else
+      SRC += $(PROTOCOL_DIR)/ps2_usart.c
+      SRC += protocol/ps2_io_avr.c
+    endif
     OPT_DEFS += -DPS2_USE_USART
 endif
 

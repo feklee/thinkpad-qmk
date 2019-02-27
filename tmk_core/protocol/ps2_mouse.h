@@ -111,8 +111,8 @@ static enum ps2_mouse_mode_e {
 #define PS2_MOUSE_V_MULTIPLIER          1
 #endif
 /* For some mice this will need to be 0x0F */
-#ifndef PS2_MOUSE_SCROLL_MASK       
-#define PS2_MOUSE_SCROLL_MASK           0xFF 
+#ifndef PS2_MOUSE_SCROLL_MASK
+#define PS2_MOUSE_SCROLL_MASK           0xFF
 #endif
 #ifndef PS2_MOUSE_INIT_DELAY
 #define PS2_MOUSE_INIT_DELAY            1000
@@ -140,7 +140,7 @@ typedef enum ps2_mouse_resolution_e {
     PS2_MOUSE_1_COUNT_MM,
     PS2_MOUSE_2_COUNT_MM,
     PS2_MOUSE_4_COUNT_MM,
-    PS2_MOUSE_8_COUNT_MM,   
+    PS2_MOUSE_8_COUNT_MM,
 } ps2_mouse_resolution_t;
 
 typedef enum ps2_mouse_sample_rate_e {
